@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive E-Library</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(270deg, #1e3c72, #2a5298);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            color: white;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        header {
+            background: #222;
+            color: white;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #f39c12;
+        }
+        section {
+            padding: 100px 20px;
+        }
+        .section-image {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .book {
+            perspective: 1000px;
+        }
+        .book a {
+            display: block;
+            width: 150px;
+            height: 200px;
+            background: cyan;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        .book a:hover {
+            transform: rotateY(180deg);
+        }
+        .book a::before, .book a::after {
+            content: attr(data-title);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backface-visibility: hidden;
+        }
+        .book a::after {
+            background: #f39c12;
+            color: white;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interactive E-Library</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#books">Books</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home">
+        <h2>Welcome to Our E-Library</h2>
+        <h2>Discover a vast collection of books at your fingertips. Read, explore, and enjoy knowledge in various genres.</h2>
+        <img src="https://images.unsplash.com/photo-1465929639680-64ee080eb3ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Library" class="section-image">
+	<marquee><h2>Welcome to Interactive Library</h2></marquee>
+    </section>
+    
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Welcome to our Digital Library, a revolutionary platform designed to provide seamless access to a vast collection of books, research papers, and educational resources. Our mission is to bridge the gap between knowledge and accessibility, making reading and learning available to everyone, anytime, and anywhere.</p>
+        
+        <h3>Who We Are</h3>
+        <p>Our Digital Library is an innovative online repository that caters to book lovers, students, researchers, and lifelong learners. Whether you are looking for classic literature, academic textbooks, or the latest research publications, we offer a diverse range of materials in multiple formats, including eBooks, audiobooks, and interactive media.</p>
+        
+        <h3>Our Vision</h3>
+        <p>We envision a world where knowledge knows no boundaries. Through our platform, we aim to promote digital literacy, encourage intellectual growth, and create a space where learning is engaging, inclusive, and accessible to all.</p>
+        
+        <h3>What We Offer</h3>
+        <ul>
+            <li><strong>Extensive Collection</strong> – Access thousands of books across various genres, subjects, and languages.</li>
+            <li><strong>User-Friendly Interface</strong> – A seamless and intuitive browsing experience that allows easy navigation and quick searches.</li>
+            <li><strong>Personalized Reading</strong> – Bookmark your favorite books, take notes, and customize your reading preferences.</li>
+            <li><strong>24/7 Accessibility</strong> – Read from anywhere, on any device, at any time.</li>
+            <li><strong>Community Engagement</strong> – Connect with fellow readers, participate in discussions, and share your insights.</li>
+        </ul>
+        
+        <h3>Join Us on the Journey of Knowledge</h3>
+        <p>Our Digital Library is more than just a collection of books—it’s a gateway to endless learning opportunities. Whether you're a student seeking academic resources, a professional looking for industry insights, or a book enthusiast exploring new worlds, our platform is here to support your journey.</p>
+        
+        <p><strong>Start exploring today and be part of the future of learning! 📖✨</strong></p>
+        
+        <img src="https://plus.unsplash.com/premium_photo-1664300897489-fd98eee64faf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="About Us" class="section-image">
+    </section>
+    
+      <section id="books">
+        <h2>Our Book Collection</h2>
+        <div class="book-list" id="bookList"></div>
+    </section>
+    
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf82K-6wT-odpDoxOOS-KeIDX94pwT503jx4EQPglg7Ydrzew/viewform?embedded=true" width="640" height="824" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <p>Email: support@elibrary.com</p>
+        <p>Phone: +123 456 7890</p>
+        <p>Address: 123 Book Street, Knowledge City</p>
+    </section>
+    
+    <script>
+        const bookList = document.getElementById("bookList");
+        const books = [
+            { title: "Book 1", link: "file:///D:/E-Lib/jesc105.pdf" },
+            { title: "Book 2", link: "books/book2.pdf" },
+            { title: "Book 3", link: "books/book3.pdf" },
+            { title: "Book 4", link: "books/book4.pdf" },
+            { title: "Book 5", link: "books/book5.pdf" },
+            { title: "Book 6", link: "books/book6.pdf" },
+            { title: "Book 7", link: "books/book7.pdf" },
+            { title: "Book 8", link: "books/book8.pdf" },
+            { title: "Book 9", link: "books/book9.pdf" },
+            { title: "Book 10", link: "books/book10.pdf" },
+	     { title: "Book 11", link: "books/book11.pdf" },
+            { title: "Book 12", link: "books/book3.pdf" },
+            { title: "Book 13", link: "books/book4.pdf" },
+            { title: "Book 14", link: "books/book5.pdf" },
+            { title: "Book 15", link: "books/book6.pdf" },
+            { title: "Book 16", link: "books/book7.pdf" },
+            { title: "Book 17", link: "books/book8.pdf" },
+            { title: "Book 18", link: "books/book9.pdf" },
+            { title: "Book 19", link: "books/book10.pdf" }
+
+        ];
+        
+        books.forEach(book => {
+            let bookContainer = document.createElement("div");
+            bookContainer.classList.add("book");
+            
+            let bookLink = document.createElement("a");
+            bookLink.href = book.link;
+            bookLink.setAttribute("data-title", book.title);
+            bookLink.target = "_blank";
+            
+            bookContainer.appendChild(bookLink);
+            bookList.appendChild(bookContainer);
+        });
+    </script>
+</body>
+</html>
